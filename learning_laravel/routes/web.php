@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Middleware\CheckPermission;
 use Illuminate\Support\Facades\Route;
 use  App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,12 +21,12 @@ Route::get('/', function () {
 });
 
 
-// Route::get('/home', function () {
-//     // $user = new User();
-//     // $allUser = $user::all();
-//     // dd($allUser);
-//     return view('Home');
-// });
+Route::get('/home', function () {
+    // $user = new User();
+    // $allUser = $user::all();
+    // dd($allUser);
+    return view('Home');
+})->name('home');
 
 // Route::get('/form', function () {
 //     return view('Form');
@@ -68,24 +70,34 @@ Route::get('/', function () {
 // dùng view của "Route" để trả về view trực tiếp
 // Route::view('/show_form', 'Form');
 
-Route::prefix('/admin')->group(function () {
+Route::get('/callfromcontroller', 'App\Http\Controllers\HomeController@index')->name('home1');
 
-    Route::get('/methodGet', function () {
-        return "phương thức get của path /methodGet";
-    });
+Route::get('/getcategory', [HomeController::class,'getcategory'])->name('getcategory');
+
+Route::prefix('admin')->group(function () {
+// {id?}: sẽ là không buộc phải có tham số. trường hợp lỗi có thể gán là null or 0
+    Route::get('methodGet/{slug?}-{id?}', function ($slug = null, $id = null) {
+        return "phương thức get của path /methodGet với tham số :" . $slug . "<br> id= " . $id;
+    })->where(
+        ['slug' => '[a-z-]+'],
+        ['id' => '0-9+'],
+    )->name('admin.tin-tuc');
 
     Route::get('/show', function () {
         return view('Form');
-    });
+    })->name('admin.show');
 
-    Route::prefix('/products')->group(function () {
-
-        Route::get('/add', function () {
-            return "Thêm và xóa sản phẩm";
+    Route::prefix('/products')->middleware('CheckPermission')->group(function () {
+        Route::get('/', function () {
+            return "danh sách sản phẩm";
         });
 
+        Route::get('/add', function () {
+            return "Thêm sản phẩm";
+        })->name('admin.products.add');
+
         Route::get('/edit', function () {
-            return "Thêm và xóa sản phẩm";
+            return "Xóa sản phẩm";
         });
     });
 });

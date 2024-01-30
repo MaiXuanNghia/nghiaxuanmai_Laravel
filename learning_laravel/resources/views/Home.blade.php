@@ -10,3 +10,6 @@ if(config("app.env") == "production"){
 }
 
 ?>
+<a href="<?php echo route('admin.show') ?>">view form</a>
+<a href="<?php echo route('admin.products.add') ?>">add products</a>
+<a href="<?php echo route('admin.tin-tuc', ['id' => '122131213', 'slug' => 'tin-the-gioi']) ?>">view News</a>
