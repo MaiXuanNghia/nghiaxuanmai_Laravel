@@ -50,7 +50,10 @@ class ProductController extends Controller
         echo "<h2> " . $id . " " . $name . " </h2>";
         // helper request
         $id = request("id", '1234'); // tham số đầy tiên của request là key tham số thứ hai là giá trị mặc định của key
-        dd($id);
+        // dd($id);
+
+        $query = $request->query();
+        dd($query);
         return view('products.add');
     }
 
@@ -62,5 +65,41 @@ class ProductController extends Controller
     public function testOutput()
     {
         print_r($_POST);
+    }
+    public function showFileUpload()
+    {
+        return view('products.file');
+    }
+
+    // xử lý lấy thông ti file
+    public function headleFile(Request $request)
+    {
+        if($request->hasFile('file_upload'))
+        {
+            if($request->file_upload->isValid()) 
+            {
+                $file = $request->file_upload; // đưa name của input file vào để lấy thông tin
+                // dd($file);
+                // $ext = $request->path()
+                $ext = $file->extension();
+                // echo $ext;
+                // để di chuyển file từ các thư mục folder chứa file tạm trên server ta dùng store('images', 'local')  // nếu không có tham số thứ 2 nó sẽ được lưu tại storage/app/images/image.png
+                $patch = $file->store('images', 'local');
+
+                //để đổi tên file cũ thành tên mới thì dùng storeAs('tên cũ', 'tên mới')
+                $patch = $file->storeAs('images', 'khoa-hoc.txt');
+                // nếu muốn chuyển đến thư mục mong muốn tìm hiểu về move
+                // muốn lấy file ra ta dùng getClientOriginalName()
+                $fileName = $file->getClientOriginalName();
+                
+                // đổi tên file name
+                $fileName = md5(uniqid()).'.'.$ext;
+                dd($fileName);
+            }
+        }
+        else 
+        {
+            return 'vui lòng chọn file';
+        }
     }
 }
