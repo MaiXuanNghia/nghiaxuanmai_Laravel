@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Homecontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,9 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function (){
     return view('welcome');
 })->name('welcome');
+
+Route::get('/home', [Homecontroller::class, 'index'] );
+Route::get('/homeExtends', [Homecontroller::class, 'index1'] );
 
 Route::get('/sanpham/{id?}', [ProductController::class, 'index']);
 
