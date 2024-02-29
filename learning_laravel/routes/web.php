@@ -18,9 +18,9 @@ Route::get('/', function (){
 })->name('welcome');
 
 Route::get('/home', [Homecontroller::class, 'index'] );
-Route::get('/homeExtends', [Homecontroller::class, 'index1'] );
+Route::get('/homeExtends', [Homecontroller::class, 'index1'] )->name('home1');
 
-Route::get('/sanpham/{id?}', [ProductController::class, 'index']);
+Route::get('/sanpham/{id?}', [ProductController::class, 'index'])->name('product');
 
 Route::middleware('auth.admin')->prefix('/category')->group(function () {
     Route::get('/', [ProductController::class, 'index']);
