@@ -1,0 +1,1 @@
+<button type="button" class="btn btn-success text-center">Đăng ký ngay</button>

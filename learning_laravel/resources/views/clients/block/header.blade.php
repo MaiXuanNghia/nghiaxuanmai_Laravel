@@ -8,13 +8,13 @@
             </div>
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('home1')}}">Trang chủ</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('home')}}">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Giới thiệu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('product')}}">sản phẩm</a>
+                        <a class="nav-link" href="#">sản phẩm</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">dịch vụ</a>

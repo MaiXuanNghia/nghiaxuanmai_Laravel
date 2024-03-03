@@ -13,21 +13,11 @@ use App\Http\Controllers\Homecontroller;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function (){
-    return view('welcome');
-})->name('welcome');
 
-Route::get('/home', [Homecontroller::class, 'index'] );
-Route::get('/homeExtends', [Homecontroller::class, 'index1'] )->name('home1');
 
-Route::get('/sanpham/{id?}', [ProductController::class, 'index'])->name('product');
+Route::get('/home', [ProductController::class, 'index'])->name('home');
+Route::get('/adds', [ProductController::class, 'getAdd']);
+Route::get('/products', [ProductController::class, 'getProducts']);
+Route::post('/adds', [ProductController::class, 'postadd']);
+Route::put('/adds', [ProductController::class, 'putadd']);
 
-Route::middleware('auth.admin')->prefix('/category')->group(function () {
-    Route::get('/', [ProductController::class, 'index']);
-    Route::get('/add', [ProductController::class, 'showForm']);
-    Route::post('/add', [ProductController::class, 'testOutput']);
-    Route::get('/kiemtra', [ProductController::class, 'kiemtra']);
-    // hiểm thị form upload
-    Route::get('/uploadFile', [ProductController::class, 'showFileUpload']);
-    Route::post('/uploadFile', [ProductController::class, 'headleFile'])->name('product.uploadFile');
-});

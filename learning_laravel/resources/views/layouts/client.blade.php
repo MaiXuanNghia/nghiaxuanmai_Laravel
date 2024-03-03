@@ -6,8 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('assets/clients/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/clients/css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style type="text/css">
-        @yield('css');
+        /* @yield('css'); */
     </style>
 </head>
 <body>
@@ -19,7 +20,13 @@
                 @include('clients.block.sidebar')
             @show
         </aside>
-        <h2 class="text-center">Trang chủ</h2>
+        <h2 class="text-center">{{ $data }}</h2>
+
+        @section('content')
+        @show
+
+        @section('form')
+        @show
     </main>
     </div>
     <footer>
@@ -32,5 +39,6 @@
             alert('thành công');
         }
     </script>
+    @stack('scripts')
 </body>
 </html>

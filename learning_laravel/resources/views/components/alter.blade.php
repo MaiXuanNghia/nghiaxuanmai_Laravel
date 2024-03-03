@@ -1,0 +1,2 @@
+<div class="alert alert-{{ $type }} text-center" style="width: 50%; position: absolute; transform: translate(45%, 50%);" role="alert"><i class="fa fa-{{ $icon }}" aria-hidden="true">.</i>
+{{ $content }}</div>
