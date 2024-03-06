@@ -14,8 +14,6 @@
     @else
     <p>không phải môi trường dev</p>
 @endenv -->
-<x-alter/>
 <!-- <x-Input.Button/>
 <x-Form.Button/> -->
-<x-alert type="danger" content="đặt gì?"/>
 @endsection

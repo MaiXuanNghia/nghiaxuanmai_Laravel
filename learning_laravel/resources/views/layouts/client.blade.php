@@ -22,8 +22,7 @@
         </aside>
         <h2 class="text-center">{{ $data }}</h2>
 
-        @section('content')
-        @show
+        @yield('content')
 
         @section('form')
         @show
