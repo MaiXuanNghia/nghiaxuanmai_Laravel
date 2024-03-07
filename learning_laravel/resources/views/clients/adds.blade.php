@@ -7,10 +7,9 @@
 
 @section('form')
 <form action="" method="POST">
-    <input type="text">
-    
+    <input type="text" placeholder="enter here" name="name" value="{{ old('name') }}">
     <button type="submit">submit</button>
     @csrf
-    @method('PUT')
+    <!-- method('PUT') -->
 </form>
 @endsection

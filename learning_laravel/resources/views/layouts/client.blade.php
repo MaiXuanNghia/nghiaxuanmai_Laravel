@@ -20,7 +20,7 @@
                 @include('clients.block.sidebar')
             @show
         </aside>
-        <h2 class="text-center">{{ $data }}</h2>
+        <!-- <h2 class="text-center">{{-- $data --}}</h2> -->
 
         @yield('content')
 

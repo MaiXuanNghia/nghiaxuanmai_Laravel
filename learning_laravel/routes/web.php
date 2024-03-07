@@ -41,3 +41,14 @@ Route::get('/get_respon123', function () {
 
     return $response;
 });
+
+Route::get('/bai', function () {
+    // echo old('name'); // old('từ khóa name của input từ form)
+    return view('clients.adds');
+});
+
+Route::post('/bai', function (Request $request) {
+    if (!empty($request->name)){
+        return back()->withInput()->with("data", 'them san pham'); // ->with("key", 'value')
+    }
+});
