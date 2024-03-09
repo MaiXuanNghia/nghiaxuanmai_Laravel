@@ -52,3 +52,5 @@ Route::post('/bai', function (Request $request) {
         return back()->withInput()->with("data", 'them san pham'); // ->with("key", 'value')
     }
 });
+
+Route::get('/downloadimage', [Homecontroller::class, 'downloadimage'])->name('downloadimage0');

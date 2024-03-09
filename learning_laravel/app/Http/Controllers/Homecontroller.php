@@ -13,7 +13,7 @@ class Homecontroller extends Controller
     public function index()
     {
         $data = "wellcom";
-        $data1= "<h3>Chương 1: Nhập môm laravel</h3>";
+        $data1 = "<h3>Chương 1: Nhập môm laravel</h3>";
         $index = 1;
         $data2 = ["item1", "item2", "item3"]; //"item1", "item2", "item3"
         return view('clients.home', compact('data', 'data1', 'index', 'data2'));
@@ -71,5 +71,21 @@ class Homecontroller extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function downloadimage(Request $request)
+    {
+        if (!empty($request->image)) {
+            $image = trim($request->image);
+            // $name = 'image' . uniqid() . ".jpg";
+            $name = basename($image);
+
+            // return response()->streamDownload(function () use ($image) {
+            //     $echohopthu = file_get_contents($image);
+            //     echo $echohopthu;
+            // }, $name);
+        }
+
+        return response()->download($image); // nếu muốn pdf thì dùng contentype-applycation...
     }
 }
