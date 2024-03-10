@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 
 class Homecontroller extends Controller
 {
@@ -36,16 +37,17 @@ class Homecontroller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         //
-        $request->validate([
-            'nameproduct' => 'required',
-            'priceproduct' => 'required|integer'
-        ]);
-        
+        // $request->validate([
+        //     'nameproduct' => 'required',
+        //     'priceproduct' => 'required|integer'
+        // ]);
+        dd($request);
+
         // xử lý nếu thành công
-        return "thành công";
+        // return "thành công";
     }
 
     /**
