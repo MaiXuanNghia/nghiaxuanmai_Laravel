@@ -42,15 +42,12 @@ Route::get('/get_respon123', function () {
     return $response;
 });
 
-Route::get('/bai', function () {
+Route::get('/them-san-pham', function () {
     // echo old('name'); // old('từ khóa name của input từ form)
-    return view('clients.adds');
+    $data = 'Thêm sản phẩm';
+    return view('clients.adds', compact('data'));
 });
 
-Route::post('/bai', function (Request $request) {
-    if (!empty($request->name)){
-        return back()->withInput()->with("data", 'them san pham'); // ->with("key", 'value')
-    }
-});
+Route::post('/them-san-pham', [Homecontroller::class, 'store']); 
 
 Route::get('/downloadimage', [Homecontroller::class, 'downloadimage'])->name('downloadimage0');

@@ -39,6 +39,13 @@ class Homecontroller extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nameproduct' => 'required',
+            'priceproduct' => 'required|integer'
+        ]);
+        
+        // xử lý nếu thành công
+        return "thành công";
     }
 
     /**
