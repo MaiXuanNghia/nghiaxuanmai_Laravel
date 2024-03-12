@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -25,10 +26,25 @@ class ProductController extends Controller
         $data = 'Thêm sản phẩm';
         return view('clients.adds', compact('data'));
     }
-    public function postadd(ProductRequest $request)
+    // public function postadd(ProductRequest $request)
+    // {
+    //     dd($request->all());
+    // } bài 22
+
+    public function postadd(Request $request)
     {
-        dd($request->all());
+        $rule = [
+            'nameproduct' => 'required',
+            'priceproduct' => 'required|integer'
+        ];
+
+        $validator = Validator::make($request->all(), $rule);
+
+        // if($validator->fails()){
+        return back()->withErrors($validator)->withInput();
+        // }
     }
+
     public function putadd(Request $request)
     {
         return 'phương thức put';
