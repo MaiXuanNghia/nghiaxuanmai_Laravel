@@ -38,13 +38,14 @@ class Homecontroller extends Controller
      * Store a newly created resource in storage.
      */
     public function store(ProductRequest $request)
-    {
-        //
+    {   
         // $request->validate([
         //     'nameproduct' => 'required',
         //     'priceproduct' => 'required|integer'
         // ]);
-        dd($request);
+
+        // dd($request);
+        
 
         // xử lý nếu thành công
         // return "thành công";

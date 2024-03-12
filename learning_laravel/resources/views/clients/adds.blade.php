@@ -15,9 +15,11 @@
 
 <form action="" method="POST">
     @if ($errors->any())
+    @error('msg')
     <div class="alert alert-danger text-center" role="alert">
-        vui lòng kiểm tra lại dữ liệu
+        {{ $message }}
     </div>
+    @enderror
     @endif
     <div class="mb-3">
         <label for="">Tên sản phẩm</label>

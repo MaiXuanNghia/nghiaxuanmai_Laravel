@@ -48,6 +48,6 @@ Route::get('/them-san-pham', function () {
     return view('clients.adds', compact('data'));
 });
 
-Route::post('/them-san-pham', [Homecontroller::class, 'store']); 
+Route::post('/them-san-pham', [ProductController::class, 'postadd']); 
 
 Route::get('/downloadimage', [Homecontroller::class, 'downloadimage'])->name('downloadimage0');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -24,9 +25,9 @@ class ProductController extends Controller
         $data = 'Thêm sản phẩm';
         return view('clients.adds', compact('data'));
     }
-    public function postadd(Request $request)
+    public function postadd(ProductRequest $request)
     {
-        dd($request);
+        dd($request->all());
     }
     public function putadd(Request $request)
     {
