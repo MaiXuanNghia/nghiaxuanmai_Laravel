@@ -45,7 +45,13 @@ class ProductController extends Controller
 
         $request->validate([
             'nameproduct' => ['required', new Uppercase],
-            'priceproduct' => ['required', 'integer'],
+            'priceproduct' => ['required', 'integer', function ($attribute, $value, $fail){
+                if (strtoupper($value) !== $value) {
+                    $fail('The :attribute must be integer.')->translate([
+                        'value' => $value,
+                    ], 'fr');
+                }
+            }],
         ]);
 
         // return back()->withErrors($validator)->withInput();
