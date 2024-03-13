@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\Uppercase;
 
 class ProductController extends Controller
 {
@@ -33,15 +34,21 @@ class ProductController extends Controller
 
     public function postadd(Request $request)
     {
-        $rule = [
-            'nameproduct' => 'required',
-            'priceproduct' => 'required|integer'
-        ];
+        // $rule = [
+        //     'nameproduct' => 'required',
+        //     'priceproduct' => 'required|integer'
+        // ];
 
-        $validator = Validator::make($request->all(), $rule);
+        // $validator = Validator::make($request->all(), $rule);
 
         // if($validator->fails()){
-        return back()->withErrors($validator)->withInput();
+
+        $request->validate([
+            'nameproduct' => ['required', new Uppercase],
+            'priceproduct' => ['required', 'integer'],
+        ]);
+
+        // return back()->withErrors($validator)->withInput();
         // }
     }
 
